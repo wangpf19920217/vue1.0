@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+ <table  id="app">
+        <caption>数据循环</caption>
+        <thead>
+            <tr>
+                <th>list</th>
+                <th>名称</th>
+                <th>价格</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="book in books">  
+            <!-- v-for执行循环 -->
+                <td>
+                    {{$index}}
+                </td>
+                <td>
+                    {{book.name}}
+                </td>
+                <td>
+                     {{book.price}}
+                </td>
+            </tr>
+           
+        </tbody>
+    </table>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        data:{
+            books:[
+                {name:'javascript',price:50},
+                {name:'node',price:50},
+                {name:'ajax',price:50},
+                {name:'vue',price:50},
+            ]
+        }
+    })
+</script>
+</body>
+</html>
