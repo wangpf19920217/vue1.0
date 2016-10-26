@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<div id="app">
+    姓名:{{b}}<br>
+    年龄:{{age}}
+    <!--调用获取值-->
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        data:{
+            name:'李某某',
+            age:'15'
+        },
+        computed:{
+            b:{ //当给b设置属性的时候b立即会调用set方法
+                set: function (val) {
+                    console.log(val)
+                    //在这里对设置的值进行后续的处理
+                    //val是设置的具体内容
+                    //可以改变原数据的属性
+                    //当b更改的时候才触发事件
+                    this.name = val[0];
+                    this.age = val[1]
+                },
+                get:function () {
+                    return this.name 
+                }
+            }
+        }
+    });
+    vm.$mount('#app');
+    //调用设置值
+    setTimeout(function () {
+        vm.b = ['wpf',18];
+    },1000)
+
+</script>
+</body>
+</html>

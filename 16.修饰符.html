@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="bootstrap.css">
+</head>
+<body>
+<div id="app">
+    <!--self只在自己的身上有作用 some是属于父亲默认点some是触发父亲-->
+    <div @click.self="parent">
+        父亲
+        <div>some</div>
+        <!--组织事件传播 修饰符-->
+        <div @click.stop="child">
+            儿子
+        </div>
+    </div>
+    <a href="http://www.baidu.com" @click.prevent>goBD</a>
+    <!-- 
+        v-on
+        .stop - 调用 event.stopPropagation()。
+        .prevent - 调用 event.preventDefault()。
+        .capture - 添加事件侦听器时使用 capture 模式。
+        .self - 只当事件是从侦听器绑定的元素本身触发时才触发回调。
+        .{keyCode | keyAlias} - 只在指定按键上触发回调。
+     -->
+</div>
+<script src="vue.js"></script>
+<script>
+    var vm = new Vue({
+        el:'#app',
+        methods:{
+            parent: function () {
+                alert('父亲');
+            },
+            child: function (e) {
+                alert('孩子');
+            }
+        }
+    });
+</script>
+</body>
+</html>
